@@ -1,0 +1,42 @@
+[
+    {
+        "sender": "You",
+        "message": "hey Inansco"
+    },
+    {
+        "sender": "Inansco",
+        "message": "I'm still learning. I don't know how to answer that yet."
+    },
+    {
+        "sender": "You",
+        "message": "what is your name"
+    },
+    {
+        "sender": "Inansco",
+        "message": "My name is Inansco."
+    },
+    {
+        "sender": "You",
+        "message": "how are you"
+    },
+    {
+        "sender": "Inansco",
+        "message": "I'm doing great. Thank you for asking."
+    },
+    {
+        "sender": "You",
+        "message": "where are you"
+    },
+    {
+        "sender": "Inansco",
+        "message": "I'm still learning. I don't know how to answer that yet."
+    },
+    {
+        "sender": "You",
+        "message": "what is my name"
+    },
+    {
+        "sender": "Inansco",
+        "message": "I'm still learning. I don't know how to answer that yet."
+    }
+]

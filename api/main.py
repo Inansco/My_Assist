@@ -1,7 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
-from ai.test_provider import TestProvider
+from core.brain import Brain
 
 
 app = FastAPI(
@@ -11,12 +13,20 @@ app = FastAPI(
 )
 
 
-ai = TestProvider()
+brain = Brain()
+
+templates = Jinja2Templates(directory="templates")
 
 
 class ChatRequest(BaseModel):
     message: str
 
+@app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html"
+    )
 
 @app.get("/api/health")
 def health():
@@ -30,7 +40,7 @@ def health():
 @app.post("/api/chat")
 def chat(request: ChatRequest):
 
-    reply = ai.chat(request.message)
+    reply = brain.think(request.message)
 
     return {
         "message": request.message,

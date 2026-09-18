@@ -1,6 +1,6 @@
 from core.ai_planner import AIPlanner
 from core.tool_manager import ToolManager
-from ai.ollama_provider import OllamaProvider
+from ai.provider import get_provider
 
 
 class Brain:
@@ -9,7 +9,7 @@ class Brain:
 
         self.planner = AIPlanner()
         self.tools = ToolManager()
-        self.ai = OllamaProvider()
+        self.ai = get_provider()
 
     def think(self, message):
 

@@ -1,12 +1,12 @@
 import json
 
-from ai.ollama_provider import OllamaProvider
+from ai.provider import get_provider
 
 
 class AIPlanner:
 
     def __init__(self):
-        self.ai = OllamaProvider()
+        self.ai = get_provider()
 
     def decide(self, message):
 

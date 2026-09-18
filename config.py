@@ -2,13 +2,22 @@
 Inansco Configuration
 """
 
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 # ----------------------------
 # AI
 # ----------------------------
 
 AI_NAME = "Inansco"
 
-AI_PROVIDER = "test"
+AI_PROVIDER = os.getenv("AI_PROVIDER", "test")
+
+# AI_PROVIDER = "test"
 
 OLLAMA_HOST = "http://localhost:11434"
 

@@ -9,55 +9,34 @@ import (
 
 func Close(name string) error {
 
-	name = strings.ToLower(strings.TrimSpace(name))
+	name = strings.TrimSpace(name)
 
 	switch runtime.GOOS {
 
-	case "linux":
-
-		apps := map[string]string{
-			"notepad":      "gedit",
-			"text editor":  "gedit",
-			"editor":       "gedit",
-			"browser":      "firefox",
-			"terminal":     "gnome-terminal",
-			"calculator":   "gnome-calculator",
-		}
-
-		process, exists := apps[name]
-
-		if !exists {
-			return fmt.Errorf("unknown application: %s", name)
-		}
-
-		return exec.Command("pkill", "-f", process).Run()
-
 	case "windows":
 
-		apps := map[string]string{
-			"notepad":      "notepad.exe",
-			"text editor":  "notepad.exe",
-			"editor":       "notepad.exe",
-			"browser":      "chrome.exe",
-			"terminal":     "cmd.exe",
-			"calculator":   "calc.exe",
-		}
-
-		process, exists := apps[name]
-
-		if !exists {
-			return fmt.Errorf("unknown application: %s", name)
-		}
-
-		return exec.Command(
+		cmd := exec.Command(
 			"taskkill",
 			"/IM",
-			process,
+			fmt.Sprintf("%s.exe", name),
 			"/F",
-		).Run()
+		)
+
+		return cmd.Run()
+
+	case "linux":
+
+    name = strings.ToLower(name)
+
+    cmd := exec.Command(
+        "pkill",
+        name,
+    )
+
+    return cmd.Run()
 
 	default:
 
-		return fmt.Errorf("unsupported operating system: %s", runtime.GOOS)
+		return fmt.Errorf("unsupported operating system")
 	}
 }
